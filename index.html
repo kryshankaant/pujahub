@@ -2,7 +2,6 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <!-- Mobile pinch/double-tap zoom fix -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>वैदिक पूजा सामग्री चेकर, संकल्प हब एवं सजीव पंचांग</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -35,23 +34,19 @@
   <header class="bg-[#5c1c02] text-amber-100 text-xs py-2 px-3 sm:px-4 shadow-md border-b border-amber-800/80 sticky top-0 z-40">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
       
-      <!-- Brand Logo & Active Pandit -->
       <div class="flex items-center justify-between w-full sm:w-auto gap-2">
         <div class="flex items-center gap-2">
-          <!-- Logo Badge (卐 / ॐ) -->
-          <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 to-amber-300 text-[#421202] flex items-center justify-center font-bold text-sm shadow-md border border-amber-200 flex-shrink-0 cursor-pointer" title="वैदिक पूजा हब">
+          <div class="w-7 h-7 rounded-lg bg-gradient-to-tr from-amber-500 to-amber-300 text-[#421202] flex items-center justify-center font-bold text-sm shadow-md border border-amber-200 flex-shrink-0 cursor-pointer">
             卐
           </div>
           <span class="text-[11px] font-semibold text-amber-200/90 whitespace-nowrap">सक्रिय आचार्य:</span>
           <select id="panditSelect" onchange="switchPandit(this.value)" class="bg-[#3e1100] text-amber-100 text-xs px-2 py-1 rounded-md border border-amber-700/80 focus:outline-none max-w-[155px] sm:max-w-none truncate">
-            <!-- Dynamic pandits -->
           </select>
         </div>
 
         <span id="roleBadge" class="bg-amber-950 text-amber-300 text-[10px] px-2 py-0.5 rounded-full border border-amber-700/60 whitespace-nowrap sm:hidden">अतिथि</span>
       </div>
 
-      <!-- Auth Controls -->
       <div class="flex items-center justify-end w-full sm:w-auto gap-2">
         <span id="roleBadgeDesk" class="hidden sm:inline-block bg-amber-950 text-amber-300 text-[10px] px-2 py-0.5 rounded-full border border-amber-700/60 whitespace-nowrap">अतिथि (यजमान)</span>
         
@@ -63,7 +58,6 @@
 
         <div id="loggedInView" class="hidden items-center gap-2">
           <span class="text-amber-200 text-xs font-semibold truncate max-w-[110px]" id="headerUserName">पं. जी</span>
-          <button id="editProfileBtn" onclick="openEditProfileModal()" class="hidden bg-amber-700 hover:bg-amber-600 text-white px-2 py-0.5 rounded text-[11px]">प्रोफ़ाइल</button>
           <button onclick="handleLogout()" class="bg-red-800/90 hover:bg-red-700 text-white px-2 py-0.5 rounded text-[11px]">लॉगआउट</button>
         </div>
       </div>
@@ -71,7 +65,7 @@
     </div>
   </header>
 
-  <!-- ================= SUB-HEADER SHLOK TICKER ================= -->
+  <!-- ================= SUB-HEADER ================= -->
   <div class="bg-gradient-to-r from-[#7a2403] via-[#8f2d05] to-[#7a2403] text-white py-1.5 px-3 border-b border-amber-600/40 shadow-inner">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] text-amber-200/95 font-medium text-center sm:text-left gap-1">
       <div class="font-sanskrit tracking-wider">卐 ॐ श्री गणेशाय नमः • ॐ कुलदेवताभ्यो नमः 卐</div>
@@ -79,13 +73,12 @@
     </div>
   </div>
 
-  <!-- ================= MAIN CONTAINER ================= -->
+  <!-- ================= MAIN ================= -->
   <main class="max-w-6xl mx-auto px-3 sm:px-4 mt-3 sm:mt-4 space-y-4 flex-1 w-full">
 
     <!-- PANDIT PROFILE CARD -->
     <div class="bg-[#872a04] rounded-2xl p-3.5 sm:p-4 text-white shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 border border-amber-600/40">
       <div class="flex items-center gap-3 sm:gap-4 w-full md:w-auto">
-        <!-- Photo Container -->
         <div id="cardPanditPhotoWrap" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-200 text-amber-950 flex items-center justify-center font-bold text-2xl sm:text-3xl shadow-inner border border-amber-300 overflow-hidden flex-shrink-0">
           <span id="cardPanditIcon">🕉️</span>
           <img id="cardPanditImg" src="" alt="Pandit" class="w-full h-full object-cover hidden">
@@ -98,7 +91,7 @@
           <p class="text-xs text-amber-200/95 mt-0.5 truncate" id="cardPanditDesc">रुद्राभिषेक, नवग्रह शांति एवं महामृत्युंजय अनुष्ठान विशेषज्ञ</p>
           <div class="text-[11px] text-amber-200/80 flex flex-wrap items-center gap-x-3 gap-y-0.5 mt-1">
             <span id="cardPanditCity">📍 अलीगढ़ / अतरौली</span>
-            <span>🎓 15+ वर्ष अनुभव</span>
+            <span>🎓 वैदिक विद्वान</span>
             <span id="cardPanditPhone">📞 +91 9412345678</span>
           </div>
         </div>
@@ -173,8 +166,6 @@
 
     <!-- TAB 1: SAMAGRI CONTENT -->
     <div id="tabContent-samagri" class="space-y-4">
-      
-      <!-- PUJA SELECTOR & INPUT FIELDS (Overflow Fixed) -->
       <div class="bg-amber-50/70 rounded-2xl p-3.5 sm:p-4 border border-amber-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 text-xs">
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 w-full md:w-auto">
           <span class="text-amber-900 font-bold whitespace-nowrap">🪔 अनुष्ठान / पूजा का प्रकार:</span>
@@ -186,14 +177,12 @@
           </select>
         </div>
 
-        <!-- Fully Responsive Input Group -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full md:w-auto">
           <input type="text" id="yajmanNameInput" placeholder="उदा. शर्मा जी (अतरौली)" class="w-full bg-white border border-amber-300 px-3 py-2 rounded-xl text-xs focus:outline-none">
           <input type="text" id="pujaTimeInput" placeholder="कल प्रातः 9:00 बजे" class="w-full bg-white border border-amber-300 px-3 py-2 rounded-xl text-xs focus:outline-none">
         </div>
       </div>
 
-      <!-- PROGRESS -->
       <div class="bg-white p-3 rounded-xl border border-amber-200/80 flex items-center justify-between text-xs">
         <div class="flex items-center gap-2">
           <span class="font-bold text-slate-700">तैयारी प्रगति:</span>
@@ -202,9 +191,7 @@
         <div class="text-slate-500" id="progressItemsCount">कुल 24 में से 0 सामान एकत्र</div>
       </div>
 
-      <!-- TWO COLUMNS -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Pansari -->
         <div class="bg-white rounded-2xl p-3.5 sm:p-4 border border-amber-200/80 shadow-sm">
           <div class="flex items-center justify-between pb-3 border-b border-amber-100">
             <div class="flex items-center gap-2">
@@ -219,7 +206,6 @@
           <div id="pansariList" class="mt-3 space-y-2"></div>
         </div>
 
-        <!-- Home -->
         <div class="bg-white rounded-2xl p-3.5 sm:p-4 border border-amber-200/80 shadow-sm">
           <div class="flex items-center justify-between pb-3 border-b border-amber-100">
             <div class="flex items-center gap-2">
@@ -235,7 +221,6 @@
         </div>
       </div>
 
-      <!-- ACTIONS -->
       <div class="bg-white p-3 rounded-2xl border border-amber-200/80 flex flex-wrap items-center justify-between gap-3 text-xs">
         <button onclick="resetChecklist()" class="text-slate-500 hover:text-slate-700 font-semibold px-3 py-1.5">🔄 रीसेट</button>
         <button onclick="sendWhatsAppStatus()" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl flex items-center justify-center gap-2 shadow-sm transition">
@@ -315,13 +300,9 @@
 
   </main>
 
-  <!-- ======================================================= -->
-  <!-- 🌟 DARK METALLIC VEDIC FOOTER & COOL ART® CREDITS 🌟 -->
-  <!-- ======================================================= -->
+  <!-- ================= FOOTER ================= -->
   <footer class="mt-10 bg-[#1f0701] border-t-2 border-amber-700/60 py-6 px-4 text-white">
     <div class="max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-4">
-      
-      <!-- Cool Art Premium Card (Dark Edition) -->
       <div class="w-full max-w-2xl bg-gradient-to-r from-[#2c0b02] via-[#3a1004] to-[#2c0b02] border border-amber-500/40 rounded-3xl py-4 px-6 shadow-2xl">
         <div class="text-sm md:text-base font-extrabold text-amber-100 tracking-wide">
           Designed & Developed by: <span class="text-amber-400 font-black tracking-wider">COOL ART®</span>
@@ -340,25 +321,18 @@
     </div>
   </footer>
 
-  <!-- ============================================== -->
-  <!-- 🕉️ AUTHENTIC VEDIC LOGIN / SIGNUP MODAL 🕉️ -->
-  <!-- ============================================== -->
+  <!-- ================= AUTH MODAL ================= -->
   <div id="authModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 hidden">
     <div class="vedic-modal-bg text-white rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl border-2 border-amber-500 relative overflow-hidden">
-      <!-- Watermark Om -->
       <div class="absolute -right-10 -bottom-10 text-white/[0.04] text-9xl font-rozha pointer-events-none select-none">ॐ</div>
-
-      <!-- Close Button -->
       <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-amber-300/70 hover:text-amber-100 text-2xl font-bold">&times;</button>
 
-      <!-- Shlok & Header -->
       <div class="text-center pb-3 border-b border-amber-500/30">
         <div class="text-[11px] font-sanskrit text-amber-300 italic">॥ विद्वान् सर्वत्र पूज्यते • कर्मण्येवाधिकारस्ते ॥</div>
         <h2 class="text-xl font-rozha text-amber-100 tracking-wide mt-1">वैदिक प्रवेश एवं पंजीयन</h2>
         <p class="text-[11px] text-amber-200/80">पंडित जी एवं यजमानों हेतु सात्विक डिजिटल केंद्र</p>
       </div>
 
-      <!-- Role Selector -->
       <div class="grid grid-cols-2 gap-2 mt-4 bg-black/40 p-1 rounded-xl border border-amber-500/30 text-xs font-bold text-center">
         <button id="roleBtn-yajman" onclick="selectRole('yajman')" class="py-2 rounded-lg bg-amber-600 text-white shadow">
           🙏 यजमान / भक्त
@@ -368,7 +342,6 @@
         </button>
       </div>
 
-      <!-- Quick 1-Click Google Sign-in -->
       <div class="mt-4">
         <button onclick="authWithGoogle()" class="w-full bg-white hover:bg-amber-50 text-slate-800 font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center gap-2 shadow-md transition">
           <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.67v3h3.86c2.26-2.09 3.68-5.17 3.68-9.11z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.86-3c-1.08.72-2.45 1.16-4.07 1.16-3.13 0-5.78-2.11-6.73-4.96H1.29v3.09C3.26 21.3 7.37 24 12 24z"/><path fill="#FBBC05" d="M5.27 14.29c-.25-.72-.38-1.49-.38-2.29s.13-1.57.38-2.29V6.62H1.29C.47 8.24 0 10.06 0 12s.47 3.76 1.29 5.38l3.98-3.09z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.37 0 3.26 2.7 1.29 6.62l3.98 3.09c.95-2.85 3.6-4.96 6.73-4.96z"/></svg>
@@ -382,39 +355,32 @@
         <div class="h-px bg-amber-500/20 flex-1"></div>
       </div>
 
-      <!-- Manual Detail Form -->
       <div class="space-y-2.5 text-xs max-h-[50vh] overflow-y-auto pr-1">
         <div>
           <label class="block text-[11px] text-amber-200 mb-0.5" id="formNameLabel">यजमान का शुभ नाम *</label>
-          <input type="text" id="authNameInput" placeholder="उदा. शर्मा जी" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-3 py-2 text-white placeholder-amber-200/30 focus:outline-none focus:border-amber-400">
+          <input type="text" id="authNameInput" placeholder="उदा. शर्मा जी" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-3 py-2 text-white placeholder-amber-200/30 focus:outline-none">
         </div>
         <div>
           <label class="block text-[11px] text-amber-200 mb-0.5">WhatsApp / मोबाइल नंबर *</label>
-          <input type="tel" id="authPhoneInput" placeholder="9876543210" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-3 py-2 text-white placeholder-amber-200/30 focus:outline-none focus:border-amber-400">
+          <input type="tel" id="authPhoneInput" placeholder="9876543210" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-3 py-2 text-white placeholder-amber-200/30 focus:outline-none">
         </div>
 
-        <!-- Pandit Only -->
         <div id="panditOnlyFields" class="space-y-2.5 hidden">
           <div>
-            <label class="block text-[11px] text-amber-200 mb-0.5">उपाधि / पद (उदा. ज्योतिषाचार्य / कर्मकांड)</label>
+            <label class="block text-[11px] text-amber-200 mb-0.5">उपाधि / पद</label>
             <input type="text" id="authTitleInput" placeholder="ज्योतिषाचार्य एवं वैदिक अनुष्ठान" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-3 py-2 text-white placeholder-amber-200/30 focus:outline-none">
           </div>
           <div>
-            <label class="block text-[11px] text-amber-200 mb-0.5">स्थान / नगर (उदा. अतरौली, अलीगढ़)</label>
+            <label class="block text-[11px] text-amber-200 mb-0.5">स्थान / नगर</label>
             <input type="text" id="authCityInput" placeholder="अतरौली (अलीगढ़)" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-3 py-2 text-white placeholder-amber-200/30 focus:outline-none">
           </div>
-
-          <!-- Photo Upload for Pandit -->
           <div>
-            <label class="block text-[11px] text-amber-200 mb-0.5">📸 पंडित जी का फ़ोटो (Upload Photo)</label>
-            <input type="file" id="authPhotoInput" accept="image/*" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-2 py-1.5 text-xs text-amber-200 file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:bg-amber-600 file:text-white hover:file:bg-amber-500 cursor-pointer">
+            <label class="block text-[11px] text-amber-200 mb-0.5">📸 पंडित जी का फ़ोटो</label>
+            <input type="file" id="authPhotoInput" accept="image/*" class="w-full bg-black/40 border border-amber-500/40 rounded-xl px-2 py-1.5 text-xs text-amber-200 file:mr-2 file:py-1 file:px-2 file:rounded-lg file:border-0 file:text-[11px] file:bg-amber-600 file:text-white cursor-pointer">
           </div>
-          
-          <!-- Security Passcode -->
           <div class="bg-amber-950/60 p-2.5 rounded-xl border border-amber-500/40">
             <div class="flex items-center justify-between text-[11px] font-bold text-amber-300 mb-1">
               <span>🛡️ आचार्य सत्यापन कोड (Passcode)</span>
-              <span class="text-[9px] text-amber-400/80">फर्जी एंट्री रोकने हेतु</span>
             </div>
             <input type="password" id="authPanditPasscode" placeholder="सत्यापन कोड दर्ज करें" class="w-full bg-black/60 border border-amber-400/60 rounded-lg px-2.5 py-1.5 text-white text-xs placeholder-amber-200/40 focus:outline-none">
             <p class="text-[10px] text-amber-300/70 mt-1">*डिफ़ॉल्ट कोड: <code class="text-amber-300 font-bold">VEDIC108</code></p>
@@ -426,7 +392,6 @@
         </button>
       </div>
 
-      <!-- Guest Skip -->
       <div class="mt-3 text-center">
         <button onclick="closeAuthModal()" class="text-[11px] text-amber-300/70 hover:text-amber-200 underline">
           बिना लॉगिन के अतिथि के रूप में जारी रखें →
@@ -436,7 +401,7 @@
   </div>
 
   <script>
-    // 1. FIREBASE SETUP
+    // 1. FIREBASE CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyCYv_nbogckNYvvKHSqpCKsBcgKtoVewGc",
       authDomain: "puja-hub.firebaseapp.com",
@@ -451,11 +416,8 @@
     const db = firebase.firestore();
 
     const PANDIT_SECRET_PASSCODE = "VEDIC108";
-
     let selectedAuthRole = "yajman";
-    let currentUser = null;
 
-    // Fallback demo Pandit (Replaced automatically upon first DB fetch)
     const demoPandit = {
       id: "default_devendra",
       name: "पं. देवेन्द्र शास्त्री",
@@ -467,6 +429,16 @@
 
     let pandits = [demoPandit];
     let activePandit = demoPandit;
+
+    // Load saved active pandit from LocalStorage immediately to avoid demo on refresh
+    const savedLocalPandit = localStorage.getItem("vedic_active_pandit");
+    if (savedLocalPandit) {
+      try {
+        const parsed = JSON.parse(savedLocalPandit);
+        pandits = [parsed];
+        activePandit = parsed;
+      } catch(e){}
+    }
 
     const samagriCatalog = {
       satyanarayan: {
@@ -501,7 +473,6 @@
       }
     };
 
-    // 2. MODAL & ROLE SELECTOR
     function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
     function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
 
@@ -525,44 +496,78 @@
       }
     }
 
-    // 3. GOOGLE AUTH
+    // REDIRECT / POPUP SAFE GOOGLE AUTH
     async function authWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
-      try {
-        const res = await auth.signInWithPopup(provider);
-        const user = res.user;
+      provider.setCustomParameters({ prompt: 'select_account' });
 
-        if (selectedAuthRole === 'pandit') {
-          const enteredPasscode = prompt("सुरक्षा सत्यापन: कृपया आचार्य सत्यापन कोड दर्ज करें:");
-          if (enteredPasscode !== PANDIT_SECRET_PASSCODE) {
-            alert("❌ सत्यापन कोड अमान्य है! आप यजमान के रूप में जुड़े हैं।");
-            setRoleState('yajman', user.displayName);
-            closeAuthModal();
-            return;
-          }
-          await db.collection("pandits").doc(user.uid).set({
-            name: user.displayName || "आचार्य जी",
-            email: user.email,
-            phone: "919412345678",
-            city: "अतरौली / अलीगढ़",
-            title: "ज्योतिषाचार्य एवं वैदिक कर्मकांड",
-            photo: user.photoURL || "",
-            verified: true
-          }, { merge: true });
-          setRoleState('pandit', user.displayName);
-        } else {
-          setRoleState('yajman', user.displayName);
-          document.getElementById("yajmanNameInput").value = user.displayName || "";
-          document.getElementById("skYajman").value = user.displayName || "";
-          generateSankalp();
-        }
-        closeAuthModal();
+      // Save role before redirecting
+      sessionStorage.setItem("authRolePending", selectedAuthRole);
+
+      try {
+        await auth.signInWithPopup(provider);
       } catch (err) {
-        alert("Google लॉगिन: " + err.message);
+        if (err.code === 'auth/popup-blocked' || err.code === 'auth/operation-not-supported-in-this-environment') {
+          // Fallback to full page redirect if popup blocked
+          await auth.signInWithRedirect(provider);
+        } else {
+          alert("Google लॉगिन त्रुटि: " + err.message + "\n(कृपया सुनिश्चित करें कि Firebase में kryshankaant.github.io अधिकृत डोमेन में जुड़ा है)");
+        }
       }
     }
 
-    // 4. MANUAL AUTH WITH PHOTO
+    // CHECK REDIRECT RESULT ON PAGE LOAD
+    auth.getRedirectResult().then(async (result) => {
+      if (result && result.user) {
+        handleSuccessfulLogin(result.user);
+      }
+    }).catch(err => console.log("Redirect check:", err));
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        handleSuccessfulLogin(user);
+      }
+    });
+
+    async function handleSuccessfulLogin(user) {
+      const role = sessionStorage.getItem("authRolePending") || selectedAuthRole;
+      if (role === 'pandit') {
+        const enteredPasscode = prompt("सुरक्षा सत्यापन: कृपया आचार्य सत्यापन कोड (Passcode) दर्ज करें:");
+        if (enteredPasscode !== PANDIT_SECRET_PASSCODE) {
+          alert("❌ सत्यापन कोड अमान्य है! आप यजमान के रूप में जुड़े हैं।");
+          setRoleState('yajman', user.displayName);
+          return;
+        }
+
+        const panditObj = {
+          name: user.displayName || "आचार्य जी",
+          email: user.email,
+          phone: "919412345678",
+          city: "अतरौली / अलीगढ़",
+          title: "ज्योतिषाचार्य एवं वैदिक कर्मकांड",
+          photo: user.photoURL || "",
+          verified: true
+        };
+
+        try {
+          await db.collection("pandits").doc(user.uid).set(panditObj, { merge: true });
+        } catch(e){ console.warn("Firestore write:", e); }
+
+        pandits = [panditObj];
+        activePandit = panditObj;
+        localStorage.setItem("vedic_active_pandit", JSON.stringify(panditObj));
+        renderPanditSelect();
+        setRoleState('pandit', panditObj.name);
+      } else {
+        setRoleState('yajman', user.displayName);
+        document.getElementById("yajmanNameInput").value = user.displayName || "";
+        document.getElementById("skYajman").value = user.displayName || "";
+        generateSankalp();
+      }
+      closeAuthModal();
+    }
+
+    // MANUAL REGISTRATION
     async function handleManualAuth() {
       const name = document.getElementById("authNameInput").value.trim();
       const phone = document.getElementById("authPhoneInput").value.trim();
@@ -604,10 +609,10 @@
           newPandit.id = "p_" + Date.now();
         }
 
-        // Demo removed instantly
         pandits = pandits.filter(p => p.id !== "default_devendra");
         pandits.push(newPandit);
         activePandit = newPandit;
+        localStorage.setItem("vedic_active_pandit", JSON.stringify(newPandit));
         renderPanditSelect();
         setRoleState('pandit', name);
         alert(`🚩 प्रणाम आचार्य ${name} जी! आपकी प्रोफाइल सक्रिय हो गई है।`);
@@ -638,43 +643,41 @@
 
       const badge = document.getElementById("roleBadge");
       const badgeDesk = document.getElementById("roleBadgeDesk");
-      const editBtn = document.getElementById("editProfileBtn");
 
       if (role === 'pandit') {
-        const pText = "🚩 आचार्य";
-        badge.innerText = pText;
+        badge.innerText = "🚩 आचार्य";
         badgeDesk.innerText = "🚩 आचार्य मोड";
         badge.className = "bg-emerald-800 text-emerald-200 text-[10px] px-2 py-0.5 rounded-full border border-emerald-500";
         badgeDesk.className = "hidden sm:inline-block bg-emerald-800 text-emerald-200 text-[10px] px-2 py-0.5 rounded-full border border-emerald-500";
-        editBtn.classList.remove("hidden");
       } else {
-        const yText = "🙏 यजमान";
-        badge.innerText = yText;
+        badge.innerText = "🙏 यजमान";
         badgeDesk.innerText = "🙏 यजमान मोड";
         badge.className = "bg-amber-900 text-amber-200 text-[10px] px-2 py-0.5 rounded-full border border-amber-600";
         badgeDesk.className = "hidden sm:inline-block bg-amber-900 text-amber-200 text-[10px] px-2 py-0.5 rounded-full border border-amber-600";
-        editBtn.classList.add("hidden");
       }
     }
 
     function handleLogout() {
       auth.signOut();
+      sessionStorage.removeItem("authRolePending");
       document.getElementById("loggedOutView").classList.remove("hidden");
       document.getElementById("loggedInView").classList.add("hidden");
       document.getElementById("loggedInView").classList.remove("flex");
       document.getElementById("roleBadge").innerText = "अतिथि";
       document.getElementById("roleBadgeDesk").innerText = "अतिथि (यजमान)";
-      document.getElementById("editProfileBtn").classList.add("hidden");
     }
 
-    // 5. CLOUD FIRESTORE SYNC (INSTANT DEMO REPLACEMENT)
+    // 5. FIRESTORE SYNC
     function initPanditSync() {
       db.collection("pandits").onSnapshot((snap) => {
         if (!snap.empty) {
           const list = [];
           snap.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
           pandits = list;
-          activePandit = pandits[0];
+          // Keep current if still valid
+          const found = pandits.find(p => p.id === activePandit.id);
+          activePandit = found || pandits[0];
+          localStorage.setItem("vedic_active_pandit", JSON.stringify(activePandit));
         }
         renderPanditSelect();
       }, (err) => {
@@ -699,6 +702,7 @@
       const p = pandits.find(item => item.id === id);
       if (p) {
         activePandit = p;
+        localStorage.setItem("vedic_active_pandit", JSON.stringify(activePandit));
         updateActivePanditView();
       }
     }
@@ -711,7 +715,6 @@
       document.getElementById("qrPlateName").innerText = activePandit.name;
       document.getElementById("qrPlateLoc").innerText = activePandit.city || "वैदिक धाम";
 
-      // Photo render
       const photoImg = document.getElementById("cardPanditImg");
       const iconSpan = document.getElementById("cardPanditIcon");
       if (activePandit.photo) {
@@ -730,7 +733,7 @@
       generateSankalp();
     }
 
-    // 6. CHECKLIST & TABS
+    // 6. CHECKLIST & SANKALP
     function switchTab(name) {
       ['samagri', 'sankalp', 'qrplate'].forEach(t => {
         document.getElementById(`tabContent-${t}`).classList.add("hidden");
