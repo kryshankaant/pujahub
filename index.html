@@ -391,7 +391,7 @@
   <script>
     // 1. FIREBASE CONFIG
     const firebaseConfig = {
-      apiKey: "AIzaSyCRv_nbogckNYvvKMSqpCKsBcgKtoVewGc"
+      apiKey: "AIzaSyCRv_nbogckNYvvKMSqpCKsBcgKtoVewGc",
       authDomain: "puja-hub.firebaseapp.com",
       projectId: "puja-hub",
       storageBucket: "puja-hub.firebasestorage.app",
@@ -451,8 +451,13 @@
       }
     };
 
-    function openAuthModal() { document.getElementById("authModal").classList.remove("hidden"); }
-    function closeAuthModal() { document.getElementById("authModal").classList.add("hidden"); }
+    function openAuthModal() { 
+      document.getElementById("authModal").classList.remove("hidden"); 
+    }
+    
+    function closeAuthModal() { 
+      document.getElementById("authModal").classList.add("hidden"); 
+    }
 
     function selectRole(role) {
       selectedAuthRole = role;
@@ -474,7 +479,7 @@
       }
     }
 
-    // 2. SAFE POPUP GOOGLE AUTH (No White Screen Freezes)
+    // 2. SAFE POPUP GOOGLE AUTH
     async function authWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
@@ -521,7 +526,7 @@
       }
     }
 
-    // 3. IMAGE COMPRESSOR (Ensures multi-device Cloud sync works without failing)
+    // 3. IMAGE COMPRESSOR
     function compressImage(file) {
       return new Promise((resolve) => {
         const reader = new FileReader();
@@ -531,7 +536,7 @@
           img.src = event.target.result;
           img.onload = () => {
             const canvas = document.createElement('canvas');
-            const maxDim = 160; // perfect profile thumbnail size
+            const maxDim = 160;
             let width = img.width;
             let height = img.height;
             if (width > height) {
@@ -555,7 +560,7 @@
       });
     }
 
-    // 4. MANUAL AUTH WITH AUTO-SYNC
+    // 4. MANUAL AUTH WITH INSTANT SYNC
     async function handleManualAuth() {
       const name = document.getElementById("authNameInput").value.trim();
       const phone = document.getElementById("authPhoneInput").value.trim();
@@ -584,7 +589,7 @@
         if (photoFile) {
           try {
             compressedPhoto = await compressImage(photoFile);
-          } catch(e) { console.warn("Photo compression failed:", e); }
+          } catch(e) { console.warn("Photo compression:", e); }
         }
 
         const newPandit = {
@@ -601,7 +606,7 @@
           await db.collection("pandits").add(newPandit);
           alert(`🚩 प्रणाम आचार्य ${name} जी! आपका विवरण सभी डिवाइस पर लाइव हो गया है।`);
         } catch (e) {
-          alert("क्लाउड सिंक में त्रुटि: " + e.message + "\n(कृपया सुनिश्चित करें कि Firestore Rules में allow read, write: if true; है)");
+          alert("क्लाउड सिंक में त्रुटि: " + e.message);
         } finally {
           submitBtn.innerText = "प्रवेश करें (Submit)";
           submitBtn.disabled = false;
@@ -650,14 +655,13 @@
       document.getElementById("roleBadgeDesk").innerText = "अतिथि (यजमान)";
     }
 
-    // 5. REAL-TIME CLOUD LISTENER (SYNC ACROSS ALL PHONES)
+    // 5. FIRESTORE SYNC LISTENER
     function initPanditSync() {
       db.collection("pandits").onSnapshot((snap) => {
         if (!snap.empty) {
           const list = [];
           snap.forEach(doc => list.push({ id: doc.id, ...doc.data() }));
           pandits = list;
-          // Set newest registered pandit as active
           activePandit = pandits[pandits.length - 1];
         } else {
           pandits = [demoPandit];
@@ -716,7 +720,7 @@
       generateSankalp();
     }
 
-    // 6. CHECKLIST & SANKALP
+    // 6. CHECKLIST & SANKALP TABS
     function switchTab(name) {
       ['samagri', 'sankalp', 'qrplate'].forEach(t => {
         document.getElementById(`tabContent-${t}`).classList.add("hidden");
