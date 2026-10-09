@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Yatra+One&family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Mukta:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
@@ -29,6 +30,7 @@
 </head>
 <body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between overflow-x-hidden">
 
+  <!-- ================= TOP BAR ================= -->
   <header class="bg-[#5c1c02] text-amber-100 text-xs py-2 px-3 sm:px-4 shadow-md border-b border-amber-800/80 sticky top-0 z-40">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2.5">
       
@@ -63,6 +65,7 @@
     </div>
   </header>
 
+  <!-- ================= SUB-HEADER ================= -->
   <div class="bg-gradient-to-r from-[#7a2403] via-[#8f2d05] to-[#7a2403] text-white py-1.5 px-3 border-b border-amber-600/40 shadow-inner">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between text-[11px] text-amber-200/95 font-medium text-center sm:text-left gap-1">
       <div class="font-sanskrit tracking-wider">卐 ॐ श्री गणेशाय नमः • ॐ कुलदेवताभ्यो नमः 卐</div>
@@ -70,8 +73,10 @@
     </div>
   </div>
 
+  <!-- ================= MAIN CONTAINER ================= -->
   <main class="max-w-6xl mx-auto px-3 sm:px-4 mt-3 sm:mt-4 space-y-4 flex-1 w-full">
 
+    <!-- PANDIT PROFILE CARD -->
     <div class="bg-[#872a04] rounded-2xl p-3.5 sm:p-4 text-white shadow-md relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-4 border border-amber-600/40">
       <div class="flex items-center gap-3 sm:gap-4 w-full md:w-auto">
         <div id="cardPanditPhotoWrap" class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-amber-200 text-amber-950 flex items-center justify-center font-bold text-2xl sm:text-3xl shadow-inner border border-amber-300 overflow-hidden flex-shrink-0">
@@ -102,6 +107,7 @@
       </div>
     </div>
 
+    <!-- PANCHANG CARDS GRID -->
     <div class="bg-white rounded-2xl p-3.5 sm:p-4 border border-amber-200/80 shadow-sm">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-amber-100 gap-1.5">
         <div class="flex items-center gap-2">
@@ -145,6 +151,7 @@
       </div>
     </div>
 
+    <!-- MAIN MODULE TABS -->
     <div class="flex items-center gap-1.5 sm:gap-2 border-b border-amber-200/80 pb-2 overflow-x-auto">
       <button onclick="switchTab('samagri')" id="tabBtn-samagri" class="bg-gradient-to-r from-orange-600 to-amber-600 text-white px-3 sm:px-5 py-2 rounded-xl text-xs font-bold shadow-sm whitespace-nowrap flex items-center gap-1">
         📋 1. सामग्री चेकर
@@ -157,6 +164,7 @@
       </button>
     </div>
 
+    <!-- TAB 1: SAMAGRI CONTENT -->
     <div id="tabContent-samagri" class="space-y-4">
       <div class="bg-amber-50/70 rounded-2xl p-3.5 sm:p-4 border border-amber-200 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 text-xs">
         <div class="flex flex-col sm:flex-row sm:items-center gap-2 w-full md:w-auto">
@@ -221,6 +229,7 @@
       </div>
     </div>
 
+    <!-- TAB 2: SANKALP -->
     <div id="tabContent-sankalp" class="hidden bg-white rounded-2xl p-4 sm:p-6 border border-amber-200/80 shadow-sm space-y-5">
       <div class="border-b border-amber-100 pb-3">
         <h2 class="text-lg font-bold text-amber-950 font-yatra">यजमान संकल्प पत्रम् (Sankalp Pass)</h2>
@@ -267,6 +276,7 @@
       </div>
     </div>
 
+    <!-- TAB 3: SMART QR STAND -->
     <div id="tabContent-qrplate" class="hidden bg-stone-900 text-white rounded-2xl p-4 sm:p-6 border-2 border-amber-500 shadow-xl">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
@@ -290,6 +300,7 @@
 
   </main>
 
+  <!-- ================= FOOTER ================= -->
   <footer class="mt-10 bg-[#1f0701] border-t-2 border-amber-700/60 py-6 px-4 text-white">
     <div class="max-w-4xl mx-auto flex flex-col items-center justify-center text-center space-y-4">
       <div class="w-full max-w-2xl bg-gradient-to-r from-[#2c0b02] via-[#3a1004] to-[#2c0b02] border border-amber-500/40 rounded-3xl py-4 px-6 shadow-2xl">
@@ -310,6 +321,7 @@
     </div>
   </footer>
 
+  <!-- ================= AUTH MODAL ================= -->
   <div id="authModal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 hidden">
     <div class="vedic-modal-bg text-white rounded-3xl max-w-md w-full p-5 sm:p-6 shadow-2xl border-2 border-amber-500 relative overflow-hidden">
       <div class="absolute -right-10 -bottom-10 text-white/[0.04] text-9xl font-rozha pointer-events-none select-none">ॐ</div>
@@ -388,8 +400,9 @@
     </div>
   </div>
 
+  <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // 1. FIREBASE CONFIG (Updated Fresh App)
+    // 1. FIREBASE CONFIG
     const firebaseConfig = {
       apiKey: "AIzaSyCRv_nbogcKNYvvkMSqpCkS8cgKtoVmwGc",
       authDomain: "puja-hub.firebaseapp.com",
@@ -479,7 +492,7 @@
       }
     }
 
-    // 2. SAFE POPUP GOOGLE AUTH
+    // 2. GOOGLE AUTH POPUP
     async function authWithGoogle() {
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.setCustomParameters({ prompt: 'select_account' });
@@ -560,7 +573,7 @@
       });
     }
 
-    // 4. MANUAL AUTH WITH INSTANT SYNC
+    // 4. MANUAL AUTH
     async function handleManualAuth() {
       const name = document.getElementById("authNameInput").value.trim();
       const phone = document.getElementById("authPhoneInput").value.trim();
@@ -646,16 +659,46 @@
       }
     }
 
-    function handleLogout() {
-      auth.signOut();
+    function handleLogoutViewOnly() {
       document.getElementById("loggedOutView").classList.remove("hidden");
-      document.getElementById("loggedInView").classList.add("hidden");
-      document.getElementById("loggedInView").classList.remove("flex");
+      const loggedInView = document.getElementById("loggedInView");
+      loggedInView.classList.add("hidden");
+      loggedInView.classList.remove("flex");
       document.getElementById("roleBadge").innerText = "अतिथि";
       document.getElementById("roleBadgeDesk").innerText = "अतिथि (यजमान)";
+      document.getElementById("roleBadge").className = "bg-amber-950 text-amber-300 text-[10px] px-2 py-0.5 rounded-full border border-amber-700/60 whitespace-nowrap sm:hidden";
+      document.getElementById("roleBadgeDesk").className = "hidden sm:inline-block bg-amber-950 text-amber-300 text-[10px] px-2 py-0.5 rounded-full border border-amber-700/60 whitespace-nowrap";
     }
 
-    // 5. FIRESTORE SYNC LISTENER
+    async function handleLogout() {
+      await auth.signOut();
+      handleLogoutViewOnly();
+    }
+
+    // 5. AUTO SESSION PERSISTENCE (Refresh hone par user login hi rahega)
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const doc = await db.collection("pandits").doc(user.uid).get();
+          if (doc.exists) {
+            setRoleState('pandit', doc.data().name || user.displayName);
+          } else {
+            setRoleState('yajman', user.displayName || "यजमान");
+            if (!document.getElementById("yajmanNameInput").value) {
+              document.getElementById("yajmanNameInput").value = user.displayName || "";
+              document.getElementById("skYajman").value = user.displayName || "";
+              generateSankalp();
+            }
+          }
+        } catch (e) {
+          setRoleState('yajman', user.displayName || "यजमान");
+        }
+      } else {
+        handleLogoutViewOnly();
+      }
+    });
+
+    // 6. FIRESTORE SYNC LISTENER
     function initPanditSync() {
       db.collection("pandits").onSnapshot((snap) => {
         if (!snap.empty) {
@@ -720,7 +763,7 @@
       generateSankalp();
     }
 
-    // 6. CHECKLIST & SANKALP TABS
+    // 7. CHECKLIST & SANKALP TABS
     function switchTab(name) {
       ['samagri', 'sankalp', 'qrplate'].forEach(t => {
         document.getElementById(`tabContent-${t}`).classList.add("hidden");
